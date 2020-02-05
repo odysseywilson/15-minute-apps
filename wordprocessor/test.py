@@ -22,9 +22,15 @@ class AppTest(unittest.TestCase):
         # left click the button
         QTest.mouseClick(bold_button, Qt.LeftButton)
         # store the state of the bold button
-        button_state_after = self.form.bold_action.isChecked()
+        button_state_after_left = self.form.bold_action.isChecked()
         # assert that the button state is not the same before and after the click
-        self.assertNotEqual(button_state_before, button_state_after)
+        self.assertNotEqual(button_state_before, button_state_after_left)
+        # right click the button
+        QTest.mouseClick(bold_button, Qt.RightButton)
+        # store the state of the bold button
+        button_state_after_right = self.form.bold_action.isChecked()
+        # assert that the button state is not the same before and after the click
+        self.assertEqual(button_state_after_left, button_state_after_right)
 
     def test_italic_button(self):
         # store the state of the italic button
@@ -34,9 +40,15 @@ class AppTest(unittest.TestCase):
         # left click the button
         QTest.mouseClick(italic_button, Qt.LeftButton)
         # store the state of the italic button
-        button_state_after = self.form.italic_action.isChecked()
+        button_state_after_left = self.form.italic_action.isChecked()
         # assert that the button state is not the same before and after the click
-        self.assertNotEqual(button_state_before, button_state_after)
+        self.assertNotEqual(button_state_before, button_state_after_left)
+        # right click the button
+        QTest.mouseClick(italic_button, Qt.RightButton)
+        # store the state of the italic button
+        button_state_after_right = self.form.italic_action.isChecked()
+        # assert that the button state is not the same before and after the click
+        self.assertEqual(button_state_after_left, button_state_after_right)
 
     def test_underline_button(self):
         # store the state of the underline button
@@ -46,9 +58,15 @@ class AppTest(unittest.TestCase):
         # left click the button
         QTest.mouseClick(underline_button, Qt.LeftButton)
         # store the state of the underline button
-        button_state_after = self.form.underline_action.isChecked()
+        button_state_after_left = self.form.underline_action.isChecked()
         # assert that the button state is not the same before and after the click
-        self.assertNotEqual(button_state_before, button_state_after)
+        self.assertNotEqual(button_state_before, button_state_after_left)
+        # right click the button
+        QTest.mouseClick(underline_button, Qt.RightButton)
+        # store the state of the underline button
+        button_state_after_right = self.form.underline_action.isChecked()
+        # assert that the button state is not the same before and after the click
+        self.assertEqual(button_state_after_left, button_state_after_right)
 
     def test_alignl_button(self):
         # get the alignment buttons from the form
