@@ -115,6 +115,12 @@ class Canvas(QLabel):
         self.config[key] = value
 
     def set_mode(self, mode):
+        mode_good_flag = False
+        for m in MODES:
+            if m == mode:
+                mode_good_flag = True
+        if not mode_good_flag:
+            raise ValueError('Given mode is not a valid mode: ' + mode)
         # Clean up active timer animations.
         self.timer_cleanup()
         # Reset mode-specific vars (all)
