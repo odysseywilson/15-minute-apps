@@ -752,7 +752,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stampnextButton.setIcon(QIcon(self.canvas.current_stamp))
 
         # Menu options
-        self.actionNewImage.triggered.connect(self.canvas.initialize)
+        self.actionNewImage.triggered.connect(self.canvas.reset)
         self.actionOpenImage.triggered.connect(self.open_file)
         self.actionSaveImage.triggered.connect(self.save_file)
         self.actionClearImage.triggered.connect(self.canvas.reset)
