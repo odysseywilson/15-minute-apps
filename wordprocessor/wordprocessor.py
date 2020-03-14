@@ -336,7 +336,7 @@ class MainWindow(QMainWindow):
             self.dialog_critical(str(e))
 
     def file_saveas(self):
-        path, _ = QFileDialog.getSaveFileName(self, "Save file", "", "HTML documents (*.html);Text documents (*.txt);All files (*.*)")
+        path, _ = QFileDialog.getSaveFileName(self, "Save file", "", "HTML documents ( *.html ); Text documents ( *.txt ); All files ( *.* )")
 
         if not path:
             # If dialog is cancelled, will return ''
