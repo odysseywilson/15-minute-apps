@@ -99,8 +99,8 @@ class SetModeTest(unittest.TestCase):
 			's', '', ' '
 		]
 		for b in BAD_MODES:
-			self.canvas.set_mode(b)
 			with self.assertRaises(Exception):
+				self.canvas.set_mode(b)
 				p = QPoint(1,1)
 				self.canvas.mousePressEvent(fakeELeftClick())
 				# QTest.mousePress(self.canvas, Qt.LeftButton, Qt.NoModifier, p1)
