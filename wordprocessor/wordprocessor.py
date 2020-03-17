@@ -182,7 +182,7 @@ class MainWindow(QMainWindow):
 
         # We need references to these actions/settings to update as selection changes, so attach to self.
         self.fonts = QFontComboBox()
-        self.fonts.currentFontChanged.connect(self.editor.setCurrentFont)
+        self.fonts.currentFontChanged.connect(self.switch_font)
         format_toolbar.addWidget(self.fonts)
 
         self.fontsize = QComboBox()
@@ -270,7 +270,10 @@ class MainWindow(QMainWindow):
         self.update_format()
         self.update_title()
         self.show()
-
+    
+    def switch_font(self, new_font):
+        self.editor.setFontFamily(QFont.family(new_font))
+    
     def block_signals(self, objects, b):
         for o in objects:
             o.blockSignals(b)
@@ -336,7 +339,7 @@ class MainWindow(QMainWindow):
             self.dialog_critical(str(e))
 
     def file_saveas(self):
-        path, _ = QFileDialog.getSaveFileName(self, "Save file", "", "HTML documents (*.html);Text documents (*.txt);All files (*.*)")
+        path, _ = QFileDialog.getSaveFileName(self, "Save file", "", "HTML documents ( *.html ); Text documents ( *.txt ); All files ( *.* )")
 
         if not path:
             # If dialog is cancelled, will return ''
