@@ -18,9 +18,7 @@ class TestCalc(unittest.TestCase):
 		ac_state_before = self.form.pushButton_ac.isChecked()
 		# geting the AC botton 
 		ac_button = self.form.layout().itemAt(2).widget().widgetForAction(self.form.pushButton_ac)
-		# left click the button
 		QTest.mouseClick(ac_button, Qt.LeftButton)
-		# store the state of the ac button
 		button_state_after_left = self.form.pushButton_ac.isChecked()
 		# assert that the button state is not the same before and after the click
 		self.assertNotEqual(button_state_before, button_state_after_left)
