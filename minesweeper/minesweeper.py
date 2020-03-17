@@ -100,8 +100,12 @@ class Pos(QWidget):
             p.drawPixmap(r, QPixmap(IMG_FLAG))
 
     def flag(self):
-        self.is_flagged = True
-        self.update()
+        if not self.is_flagged:
+            self.is_flagged = True
+            self.update()
+        elif self.is_flagged:
+            self.is_flagged = False
+            self.update()
 
         self.clicked.emit()
 
@@ -110,7 +114,7 @@ class Pos(QWidget):
         self.update()
 
     def click(self):
-        if not self.is_revealed:
+        if not self.is_revealed and not self.is_flagged:
             self.reveal()
             if self.adjacent_n == 0:
                 self.expandable.emit(self.x, self.y)
@@ -123,9 +127,10 @@ class Pos(QWidget):
             self.flag()
 
         elif (e.button() == Qt.LeftButton):
-            self.click()
+            if not self.is_flagged:
+                self.click()
 
-            if self.is_mine:
+            if self.is_mine and not self.is_flagged:
                 self.ohno.emit()
 
 
@@ -250,6 +255,9 @@ class MainWindow(QMainWindow):
                     if not w.is_mine:
                         w.click()
                 break
+        for x in range(0, self.b_size):
+            for y in range(0, self.b_size):
+                w.repaint()
 
     def get_surrounding(self, x, y):
         positions = []
@@ -307,3 +315,4 @@ if __name__ == '__main__':
     app = QApplication([])
     window = MainWindow()
     app.exec_()
+
